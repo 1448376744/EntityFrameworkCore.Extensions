@@ -21,6 +21,9 @@ namespace EntityFrameworkCore.Extensions.Test
                 .Options;
 
             var context = new MyDbContext(options);
+            
+            var list = context.CreateSingleQuery(context.Students)
+                .ToList();
 
             var list1 = context.CreateSingleQuery(context.Students)
                 .Join(context.StudentClass, (a, b) => a.ClassId == b.Id)
