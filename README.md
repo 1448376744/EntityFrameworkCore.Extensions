@@ -7,6 +7,7 @@
  ``` C#
  public class MyFunc
  {
+      [SqlFunction]
       public static long Count<T>(T column)
       {
           throw Excption();
