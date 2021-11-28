@@ -1,0 +1,3 @@
+is_global = true
+build_property.RootNamespace = EntityFrameworkCore.Extensions.SqlServer
+build_property.ProjectDir = D:\Github\EntityFrameworkCore.Extensions\src\EntityFrameworkCore.Extensions.SqlServer\
