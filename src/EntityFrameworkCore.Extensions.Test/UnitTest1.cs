@@ -11,12 +11,14 @@ namespace EntityFrameworkCore.Extensions.Test
         [TestMethod]
         public void TestMethod1()
         {
-            var str = System.IO.File.ReadAllText(".\\connectionString.log");
+            var SqlStr = System.IO.File.ReadAllText(".\\SqlConnectionString.log");
+            var mysqlStr = System.IO.File.ReadAllText(".\\MySqlConnectionString.log");
             var logggerFactory = new LoggerFactory();
             logggerFactory.AddProvider(new DebugLoggerProvider());
             var options = new DbContextOptionsBuilder<MyDbContext>()
                 .UseLoggerFactory(logggerFactory)
-                .UseSqlServer(str)
+                //.UseSqlServer(SqlStr)
+                .UseMySql(mysqlStr,ServerVersion.AutoDetect(mysqlStr))
                 .Options;
 
             var context = new MyDbContext(options);

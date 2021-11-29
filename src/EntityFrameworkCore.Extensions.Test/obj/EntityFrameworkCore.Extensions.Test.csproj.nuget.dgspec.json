@@ -4,14 +4,14 @@
     "D:\\Github\\EntityFrameworkCore.Extensions\\src\\EntityFrameworkCore.Extensions.Test\\EntityFrameworkCore.Extensions.Test.csproj": {}
   },
   "projects": {
-    "D:\\Github\\EntityFrameworkCore.Extensions\\src\\EntityFrameworkCore.Extensions.SqlServer\\EntityFrameworkCore.Extensions.SqlServer.csproj": {
+    "D:\\Github\\EntityFrameworkCore.Extensions\\src\\EntityFrameworkCore.Extensions.MySql\\EntityFrameworkCore.Extensions.MySql.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Github\\EntityFrameworkCore.Extensions\\src\\EntityFrameworkCore.Extensions.SqlServer\\EntityFrameworkCore.Extensions.SqlServer.csproj",
-        "projectName": "EntityFrameworkCore.Extensions.SqlServer",
-        "projectPath": "D:\\Github\\EntityFrameworkCore.Extensions\\src\\EntityFrameworkCore.Extensions.SqlServer\\EntityFrameworkCore.Extensions.SqlServer.csproj",
+        "projectUniqueName": "D:\\Github\\EntityFrameworkCore.Extensions\\src\\EntityFrameworkCore.Extensions.MySql\\EntityFrameworkCore.Extensions.MySql.csproj",
+        "projectName": "EntityFrameworkCore.Extensions.MySql",
+        "projectPath": "D:\\Github\\EntityFrameworkCore.Extensions\\src\\EntityFrameworkCore.Extensions.MySql\\EntityFrameworkCore.Extensions.MySql.csproj",
         "packagesPath": "C:\\Users\\14483\\.nuget\\packages\\",
-        "outputPath": "D:\\Github\\EntityFrameworkCore.Extensions\\src\\EntityFrameworkCore.Extensions.SqlServer\\obj\\",
+        "outputPath": "D:\\Github\\EntityFrameworkCore.Extensions\\src\\EntityFrameworkCore.Extensions.MySql\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\14483\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -92,8 +92,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\Github\\EntityFrameworkCore.Extensions\\src\\EntityFrameworkCore.Extensions.SqlServer\\EntityFrameworkCore.Extensions.SqlServer.csproj": {
-                "projectPath": "D:\\Github\\EntityFrameworkCore.Extensions\\src\\EntityFrameworkCore.Extensions.SqlServer\\EntityFrameworkCore.Extensions.SqlServer.csproj"
+              "D:\\Github\\EntityFrameworkCore.Extensions\\src\\EntityFrameworkCore.Extensions.MySql\\EntityFrameworkCore.Extensions.MySql.csproj": {
+                "projectPath": "D:\\Github\\EntityFrameworkCore.Extensions\\src\\EntityFrameworkCore.Extensions.MySql\\EntityFrameworkCore.Extensions.MySql.csproj"
               }
             }
           }

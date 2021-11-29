@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<Description>基于EF6的模型构建sql，交给dapper执行查询</Description>
+		<RepositoryUrl>https://github.com/1448376744/EntityFrameworkCore.Extensions</RepositoryUrl>
+		<RepositoryType>github</RepositoryType>
+		<PackageTags>dapper,efcore,orm,linq to database</PackageTags>
+		<Authors>花间岛</Authors>
+		<AssemblyVersion>1.0.0.0</AssemblyVersion>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageReleaseNotes>1.0.0.0-rc01</PackageReleaseNotes>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Dapper" Version="2.0.4" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.0" />
+	</ItemGroup>
+</Project>

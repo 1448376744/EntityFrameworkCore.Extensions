@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFrameworkCore.Extensions.SqlServer", "EntityFrameworkCore.Extensions.SqlServer\EntityFrameworkCore.Extensions.SqlServer.csproj", "{2F09C6A1-1873-4857-B953-12C974D155DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EntityFrameworkCore.Extensions.SqlServer", "EntityFrameworkCore.Extensions.SqlServer\EntityFrameworkCore.Extensions.SqlServer.csproj", "{2F09C6A1-1873-4857-B953-12C974D155DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFrameworkCore.Extensions.Test", "EntityFrameworkCore.Extensions.Test\EntityFrameworkCore.Extensions.Test.csproj", "{D2FAA053-B9C4-433C-9C5E-0D151708B783}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EntityFrameworkCore.Extensions.Test", "EntityFrameworkCore.Extensions.Test\EntityFrameworkCore.Extensions.Test.csproj", "{D2FAA053-B9C4-433C-9C5E-0D151708B783}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityFrameworkCore.Extensions.MySql", "EntityFrameworkCore.Extensions.MySql\EntityFrameworkCore.Extensions.MySql.csproj", "{58E21508-237A-4814-97A5-661120A912E9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{D2FAA053-B9C4-433C-9C5E-0D151708B783}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2FAA053-B9C4-433C-9C5E-0D151708B783}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2FAA053-B9C4-433C-9C5E-0D151708B783}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58E21508-237A-4814-97A5-661120A912E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58E21508-237A-4814-97A5-661120A912E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58E21508-237A-4814-97A5-661120A912E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58E21508-237A-4814-97A5-661120A912E9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
