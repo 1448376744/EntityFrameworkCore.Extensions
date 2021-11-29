@@ -10,15 +10,7 @@ namespace Microsoft.EntityFrameworkCore
 {
     public static class EntityFrameworkDbContextExtensions
     {
-        public static IDapperQueryable<T> CreateSingleQuery<T>(this DbContext context)
-          where T : class
-        {
-            var model = new EFCoreModel(context.Model);
-            var provider = new DapperQueryProvider(context.Database);
-            return new DapperQueryableImpl<T>(provider, model);
-        }
-
-        public static IDapperQueryable<T> Queryable<T>(this DbContext context, DbSet<T> set)
+        public static IDapperQueryable<T> Queryable<T>(this DbContext context, DbSet<T>? set = default)
             where T : class
         {
             var model = new EFCoreModel(context.Model);
@@ -26,13 +18,22 @@ namespace Microsoft.EntityFrameworkCore
             return new DapperQueryableImpl<T>(provider, model);
         }
 
-        public static IDapperQueryable<T1, T2> Queryable<T1, T2>(this DbContext context, DbSet<T1> set1, DbSet<T2> set2)
+        public static IDapperQueryable<T1, T2> Queryable<T1, T2>(this DbContext context, DbSet<T1>? set1 = default, DbSet<T2>? set2 = default)
             where T1 : class
             where T2 : class
         {
             var model = new EFCoreModel(context.Model);
             var provider = new DapperQueryProvider(context.Database);
-            return new DapperQueryableImpl<T1,T2>(provider, model);
+            return new DapperQueryableImpl<T1, T2>(provider, model);
+        }
+
+        public static IDapperQueryable<T1, T2, T3> Queryable<T1, T2, T3>(this DbContext context, DbSet<T1>? set1 = default, DbSet<T2>? set2 = default, DbSet<T2>? set3 = default)
+           where T1 : class
+           where T2 : class
+        {
+            var model = new EFCoreModel(context.Model);
+            var provider = new DapperQueryProvider(context.Database);
+            return new DapperQueryableImpl<T1, T2, T3>(provider, model);
         }
     }
 }

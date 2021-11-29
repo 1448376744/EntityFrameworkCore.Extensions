@@ -6,7 +6,7 @@ using System.Text;
 
 namespace EntityFrameworkCore.Extensions.Query
 {
-    public class DapperQueryableImpl<T1, T2> : IDapperQueryable<T1, T2>
+    public class DapperQueryableImpl<T1, T2, T3> : IDapperQueryable<T1, T2, T3>
     {
         private readonly SqlExpressionContext Context;
 
@@ -24,30 +24,7 @@ namespace EntityFrameworkCore.Extensions.Query
             Context = new SqlExpressionContext(model);
             Context.TableAlias.Add(typeof(T1), "t1");
             Context.TableAlias.Add(typeof(T2), "t2");
-        }
-
-        public IDapperQueryable<T1, T2> Join(Expression<Func<T1, T2, bool>> expression)
-        {
-            var ex = Expression.Constant(new JoinArray(JoinType.Inner, expression));
-            var join = new JoinSqlExpression(Context, ex);
-            _expressions.Add(join);
-            return this;
-        }
-
-        public IDapperQueryable<T1, T2> LeftJoin(Expression<Func<T1, T2, bool>> expression)
-        {
-            var ex = Expression.Constant(new JoinArray(JoinType.Inner, expression));
-            var join = new JoinSqlExpression(Context, ex);
-            _expressions.Add(join);
-            return this;
-        }
-
-        public IDapperQueryable<T1, T2> RightJoin(Expression<Func<T1, T2, bool>> expression)
-        {
-            var ex = Expression.Constant(new JoinArray(JoinType.Inner, expression));
-            var join = new JoinSqlExpression(Context, ex);
-            _expressions.Add(join);
-            return this;
+            Context.TableAlias.Add(typeof(T3), "t3");
         }
 
         public int Count(int? commandTimeout = null)
@@ -62,39 +39,46 @@ namespace EntityFrameworkCore.Extensions.Query
             return _provider.ExecuteScalarAsync<int>(sql, Context.Arguments, commandTimeout);
         }
 
-        public IDapperQueryable<T1, T2> GroupBy<TGroup>(Expression<Func<T1, T2, TGroup>> expression)
+        public IDapperQueryable<T1, T2, T3> GroupBy<TGroup>(Expression<Func<T1, T2, T3, TGroup>> expression)
         {
             _expressions.Add(new GroupSqlExpression(Context, expression));
             return this;
         }
 
-        public IDapperQueryable<T1, T2> Having(Expression<Func<T1, T2, bool>> expression)
+        public IDapperQueryable<T1, T2, T3> Having(Expression<Func<T1, T2, T3, bool>> expression)
         {
             _expressions.Add(new HavingSqlExpression(Context, expression));
             return this;
         }
 
-        public IDapperQueryable<T1, T2> OrderBy<TGroup>(Expression<Func<T1, T2, TGroup>> expression)
+        public IDapperQueryable<T1, T2, T3> On(Expression<Func<T1, T2, T3, JoinArray>> expression)
+        {
+            var join = new JoinSqlExpression(Context, expression);
+            _expressions.Add(join);
+            return this;
+        }
+
+        public IDapperQueryable<T1, T2, T3> OrderBy<TGroup>(Expression<Func<T1, T2, T3, TGroup>> expression)
         {
             _expressions.Add(new OrderSqlExpression(Context, expression));
             return this;
         }
 
-        public IDapperQueryable<T1, T2> OrderByDescending<TGroup>(Expression<Func<T1, T2, TGroup>> expression)
+        public IDapperQueryable<T1, T2, T3> OrderByDescending<TGroup>(Expression<Func<T1, T2, T3, TGroup>> expression)
         {
             _expressions.Add(new OrderSqlExpression(Context, expression, false));
             return this;
         }
 
 
-        public List<TResult> Select<TResult>(Expression<Func<T1, T2, TResult>> expression, int? commandTimeout = null)
+        public List<TResult> Select<TResult>(Expression<Func<T1, T2, T3, TResult>> expression, int? commandTimeout = null)
         {
             var columns = new SelectSqlExpression(Context, expression).Build();
             var sql = BuildQuerySql(columns);
             return _provider.Query<TResult>(sql, Context.Arguments, false, commandTimeout).ToList();
         }
 
-        public async Task<List<TResult>> SelectAsync<TResult>(Expression<Func<T1, T2, TResult>> expression, int? commandTimeout = null)
+        public async Task<List<TResult>> SelectAsync<TResult>(Expression<Func<T1, T2, T3, TResult>> expression, int? commandTimeout = null)
         {
             var columns = new SelectSqlExpression(Context, expression).Build();
             var sql = BuildQuerySql(columns);
@@ -102,33 +86,33 @@ namespace EntityFrameworkCore.Extensions.Query
             return list.ToList();
         }
 
-        public IDapperQueryable<T1, T2> Skip(int count)
+        public IDapperQueryable<T1, T2, T3> Skip(int count)
         {
             _skipCount = count;
             return this;
         }
 
-        public TResult Sum<TResult>(Expression<Func<T1, T2, TResult>> expression, int? commandTimeout = null)
+        public TResult Sum<TResult>(Expression<Func<T1, T2, T3, TResult>> expression, int? commandTimeout = null)
         {
             var column = new SelectSqlExpression(Context, expression).Build();
             var sql = BuildQuerySql($"SUM({column})");
             return _provider.ExecuteScalar<TResult>(sql, Context.Arguments, commandTimeout);
         }
 
-        public Task<TResult> SumAsync<TResult>(Expression<Func<T1, T2, TResult>> expression, int? commandTimeout = null)
+        public Task<TResult> SumAsync<TResult>(Expression<Func<T1, T2, T3, TResult>> expression, int? commandTimeout = null)
         {
             var column = new SelectSqlExpression(Context, expression).Build();
             var sql = BuildQuerySql($"SUM({column})");
             return _provider.ExecuteScalarAsync<TResult>(sql, Context.Arguments, commandTimeout);
         }
 
-        public IDapperQueryable<T1, T2> Take(int count)
+        public IDapperQueryable<T1, T2, T3> Take(int count)
         {
             _takeCount = count;
             return this;
         }
 
-        public IDapperQueryable<T1, T2> Where(Expression<Func<T1, T2, bool>> expression)
+        public IDapperQueryable<T1, T2, T3> Where(Expression<Func<T1, T2, T3, bool>> expression)
         {
             _expressions.Add(new WhereSqlExpression(Context, expression));
             return this;

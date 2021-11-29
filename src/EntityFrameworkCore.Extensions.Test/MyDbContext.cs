@@ -22,8 +22,13 @@ namespace EntityFrameworkCore.Extensions.Test
         [Column("SName")]
         public string Name { get; set; }
         public int ClassId { get; set; }
+        public int GradeId { get; set; }
     }
-
+    public class StudentGrade
+    {
+        public int Id { get; set; }
+        public string Grade { get; set; }
+    }
     public class StudentClass
     {
         public int Id { get; set; }

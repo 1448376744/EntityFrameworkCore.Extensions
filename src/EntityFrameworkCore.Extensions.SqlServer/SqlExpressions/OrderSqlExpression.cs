@@ -11,7 +11,7 @@ namespace EntityFrameworkCore.Extensions.SqlExpressions
         {
             _asc = asc;
         }
-
+       
         protected override Expression VisitMember(MemberExpression node)
         {
             if (node.Expression != null && node.Expression.NodeType == ExpressionType.Parameter)

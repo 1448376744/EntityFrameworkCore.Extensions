@@ -112,8 +112,14 @@ namespace EntityFrameworkCore.Extensions.SqlExpressions
 
         public string BuildView()
         {
-            var expressions = _list.Where(a => a is JoinSqlExpression).First();
-            return expressions.Build();
+            var expression = _list
+                .Where(a => a is JoinSqlExpression)
+                .FirstOrDefault();
+            if (expression == null)
+            {
+                throw new InvalidOperationException("Missing join expression");
+            }
+            return expression.Build();
         }
     }
 }

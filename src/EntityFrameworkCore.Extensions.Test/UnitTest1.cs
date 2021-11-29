@@ -21,18 +21,14 @@ namespace EntityFrameworkCore.Extensions.Test
 
             var context = new MyDbContext(options);
 
-            var list = context.Queryable(context.Students)
-                .Where(a => a.Id > 0)
-                .GroupBy(a => a.ClassId)
-                .Select(s => new
-                {
-                    s.ClassId,
-                    Count = SqlFunc.COUNT(s.Id)
-                });
 
-            var list1 = context.Queryable(context.Students, context.StudentClass)
-                .LeftJoin((a, b) => a.ClassId == b.Id)
-                .Select((a, b) => new { a.Name, Class = b.Name });
+            var list1 = context.Queryable<Student, StudentClass, StudentGrade>()
+                .On((a, b, c) => new JoinArray
+                (
+                    JoinType.Inner, a.ClassId == b.Id,
+                    JoinType.Left, a.GradeId == c.Id
+                ))
+                .Select((a, b, c) => new { a.Name, Class = b.Name });
         }
     }
 }

@@ -5,6 +5,7 @@ namespace Microsoft.EntityFrameworkCore
 {
     public static class IDbQueryableExtensions
     {
+        #region one
         public static TResult First<TResult>(this IDapperQueryable<TResult> queryable)
         {
             return queryable.Take(1).ToList().First();
@@ -60,5 +61,6 @@ namespace Microsoft.EntityFrameworkCore
             var list = await queryable.SelectAsync(expression);
             return list;
         }
+        #endregion
     }
 }

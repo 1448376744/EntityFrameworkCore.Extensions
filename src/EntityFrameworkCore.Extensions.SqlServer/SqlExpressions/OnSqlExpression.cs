@@ -13,20 +13,22 @@ namespace EntityFrameworkCore.Extensions.SqlExpressions
 
         protected override Expression VisitConstant(ConstantExpression node)
         {
-            if (node.Value != null)
+            if (node.Value is JoinArray join)
             {
-                Append(node.Value.ToString() ?? string.Empty);
+                var joinType = (JoinType)join.Joins[0];
+                var expression = (Expression)join.Joins[1];
+                Visit(expression);
             }
             return node;
         }
-
-        protected override Expression VisitMember(MemberExpression node)
-        {
-            if (node.Expression != null && node.Expression.NodeType == ExpressionType.Parameter)
-            {
-                AppendMemberName(node);
-            }
-            return node;
-        }
+        //protected override Expression VisitMember(MemberExpression node)
+        //{
+        //    if (node.Expression != null && node.Expression.NodeType == ExpressionType.Parameter)
+        //    {
+        //        var table1 = Context.TableAlias[node.Expression.Type];
+        //        AppendMemberName(node);
+        //    }
+        //    return node;
+        //}
     }
 }
