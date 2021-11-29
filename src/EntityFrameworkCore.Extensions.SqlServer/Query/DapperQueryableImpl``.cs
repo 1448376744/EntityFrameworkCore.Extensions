@@ -11,6 +11,7 @@ namespace EntityFrameworkCore.Extensions.Query
         private readonly SqlExpressionContext Context;
 
         private readonly DapperQueryProvider _provider;
+
         private readonly SqlExpressionCollection _expressions = new();
 
         private int _takeCount = -1;
@@ -24,7 +25,7 @@ namespace EntityFrameworkCore.Extensions.Query
             Context.TableAlias.Add(typeof(T1), "t1");
             Context.TableAlias.Add(typeof(T2), "t2");
         }
-      
+
         public IDapperQueryable<T1, T2> Join(Expression<Func<T1, T2, bool>> expression)
         {
             var join = new JoinSqlExpression(Context, new JoinExpression(typeof(T1), typeof(T2), expression, JoinType.Inner));
@@ -45,14 +46,17 @@ namespace EntityFrameworkCore.Extensions.Query
             _expressions.Add(join);
             return this;
         }
+
         public int Count(int? commandTimeout = null)
         {
-            throw new NotImplementedException();
+            var sql = BuildQuerySql("COUNT(*)");
+            return _provider.ExecuteScalar<int>(sql, Context.Arguments, commandTimeout);
         }
 
         public Task<int> CountAsync(int? commandTimeout = null)
         {
-            throw new NotImplementedException();
+            var sql = BuildQuerySql("COUNT(*)");
+            return _provider.ExecuteScalarAsync<int>(sql, Context.Arguments, commandTimeout);
         }
 
         public IDapperQueryable<T1, T2> GroupBy<TGroup>(Expression<Func<T1, T2, TGroup>> expression)
@@ -61,31 +65,21 @@ namespace EntityFrameworkCore.Extensions.Query
             return this;
         }
 
-        public IDapperQueryable<T1, T2> Having(Expression<Func<T1, T2, bool>> expression, bool condition = true)
+        public IDapperQueryable<T1, T2> Having(Expression<Func<T1, T2, bool>> expression)
         {
-            if (condition)
-            {
-                _expressions.Add(new HavingSqlExpression(Context, expression));
-            }
+            _expressions.Add(new HavingSqlExpression(Context, expression));
             return this;
         }
 
-
-        public IDapperQueryable<T1, T2> OrderBy<TGroup>(Expression<Func<T1, T2, TGroup>> expression, bool condition = true)
+        public IDapperQueryable<T1, T2> OrderBy<TGroup>(Expression<Func<T1, T2, TGroup>> expression)
         {
-            if (condition)
-            {
-                _expressions.Add(new OrderSqlExpression(Context, expression));
-            }
+            _expressions.Add(new OrderSqlExpression(Context, expression));
             return this;
         }
 
-        public IDapperQueryable<T1, T2> OrderByDescending<TGroup>(Expression<Func<T1, T2, TGroup>> expression, bool condition = true)
+        public IDapperQueryable<T1, T2> OrderByDescending<TGroup>(Expression<Func<T1, T2, TGroup>> expression)
         {
-            if (condition)
-            {
-                _expressions.Add(new OrderSqlExpression(Context, expression, false));
-            }
+            _expressions.Add(new OrderSqlExpression(Context, expression, false));
             return this;
         }
 
@@ -97,45 +91,43 @@ namespace EntityFrameworkCore.Extensions.Query
             return _provider.Query<TResult>(sql, Context.Arguments, false, commandTimeout).ToList();
         }
 
-        public Task<List<TResult>> SelectAsync<TResult>(Expression<Func<T1, T2, TResult>> expression, int? commandTimeout = null)
+        public async Task<List<TResult>> SelectAsync<TResult>(Expression<Func<T1, T2, TResult>> expression, int? commandTimeout = null)
         {
-            throw new NotImplementedException();
+            var columns = new SelectSqlExpression(Context, expression).Build();
+            var sql = BuildQuerySql(columns);
+            var list = await _provider.QueryAsync<TResult>(sql, Context.Arguments, commandTimeout);
+            return list.ToList();
         }
 
-        public IDapperQueryable<T1, T2> Skip(int count, bool condition = true)
+        public IDapperQueryable<T1, T2> Skip(int count)
         {
-            if (condition)
-            {
-                _skipCount = count;
-            }
+            _skipCount = count;
             return this;
         }
 
         public TResult Sum<TResult>(Expression<Func<T1, T2, TResult>> expression, int? commandTimeout = null)
         {
-            throw new NotImplementedException();
+            var column = new SelectSqlExpression(Context, expression).Build();
+            var sql = BuildQuerySql($"SUM({column})");
+            return _provider.ExecuteScalar<TResult>(sql, Context.Arguments, commandTimeout);
         }
 
         public Task<TResult> SumAsync<TResult>(Expression<Func<T1, T2, TResult>> expression, int? commandTimeout = null)
         {
-            throw new NotImplementedException();
+            var column = new SelectSqlExpression(Context, expression).Build();
+            var sql = BuildQuerySql($"SUM({column})");
+            return _provider.ExecuteScalarAsync<TResult>(sql, Context.Arguments, commandTimeout);
         }
 
-        public IDapperQueryable<T1, T2> Take(int count, bool condition = true)
+        public IDapperQueryable<T1, T2> Take(int count)
         {
-            if (condition)
-            {
-                _takeCount = count;
-            }
+            _takeCount = count;
             return this;
         }
 
-        public IDapperQueryable<T1, T2> Where(Expression<Func<T1, T2, bool>> expression, bool condition = true)
+        public IDapperQueryable<T1, T2> Where(Expression<Func<T1, T2, bool>> expression)
         {
-            if (condition)
-            {
-                _expressions.Add(new WhereSqlExpression(Context, expression));
-            }
+            _expressions.Add(new WhereSqlExpression(Context, expression));
             return this;
         }
 
@@ -185,7 +177,5 @@ namespace EntityFrameworkCore.Extensions.Query
             }
             return sb.ToString();
         }
-
-
     }
 }

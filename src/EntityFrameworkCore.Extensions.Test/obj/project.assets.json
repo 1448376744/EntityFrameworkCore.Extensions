@@ -252,6 +252,20 @@
           "buildTransitive/netcoreapp3.1/_._": {}
         }
       },
+      "Microsoft.Extensions.Logging.Debug/6.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
+          "Microsoft.Extensions.Logging": "6.0.0",
+          "Microsoft.Extensions.Logging.Abstractions": "6.0.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.Extensions.Logging.Debug.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Extensions.Logging.Debug.dll": {}
+        }
+      },
       "Microsoft.Extensions.Options/6.0.0": {
         "type": "package",
         "dependencies": {
@@ -2757,6 +2771,25 @@
         "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.xml",
         "microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
         "microsoft.extensions.logging.abstractions.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
+    },
+    "Microsoft.Extensions.Logging.Debug/6.0.0": {
+      "sha512": "M9g/JixseSZATJE9tcMn9uzoD4+DbSglivFqVx8YkRJ7VVPmnvCEbOZ0AAaxsL1EKyI4cz07DXOOJExxNsUOHw==",
+      "type": "package",
+      "path": "microsoft.extensions.logging.debug/6.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/Microsoft.Extensions.Logging.Debug.dll",
+        "lib/net461/Microsoft.Extensions.Logging.Debug.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.Logging.Debug.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.Logging.Debug.xml",
+        "microsoft.extensions.logging.debug.6.0.0.nupkg.sha512",
+        "microsoft.extensions.logging.debug.nuspec",
         "useSharedDesignerContext.txt"
       ]
     },
@@ -7861,6 +7894,7 @@
       "MSTest.TestAdapter >= 2.2.7",
       "MSTest.TestFramework >= 2.2.7",
       "Microsoft.EntityFrameworkCore.SqlServer >= 6.0.0",
+      "Microsoft.Extensions.Logging.Debug >= 6.0.0",
       "Microsoft.NET.Test.Sdk >= 16.11.0",
       "Pomelo.EntityFrameworkCore.MySql >= 6.0.0",
       "coverlet.collector >= 3.1.0"
@@ -7872,11 +7906,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Github\\EntityFrameworkCore.Extensions\\src\\EntityFrameworkCore.Extensions.Test\\EntityFrameworkCore.Extensions.Test.csproj",
+      "projectUniqueName": "E:\\Github\\EntityFrameworkCore.Extensions\\src\\EntityFrameworkCore.Extensions.Test\\EntityFrameworkCore.Extensions.Test.csproj",
       "projectName": "EntityFrameworkCore.Extensions.Test",
-      "projectPath": "D:\\Github\\EntityFrameworkCore.Extensions\\src\\EntityFrameworkCore.Extensions.Test\\EntityFrameworkCore.Extensions.Test.csproj",
+      "projectPath": "E:\\Github\\EntityFrameworkCore.Extensions\\src\\EntityFrameworkCore.Extensions.Test\\EntityFrameworkCore.Extensions.Test.csproj",
       "packagesPath": "C:\\Users\\14483\\.nuget\\packages\\",
-      "outputPath": "D:\\Github\\EntityFrameworkCore.Extensions\\src\\EntityFrameworkCore.Extensions.Test\\obj\\",
+      "outputPath": "E:\\Github\\EntityFrameworkCore.Extensions\\src\\EntityFrameworkCore.Extensions.Test\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\14483\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -7893,8 +7927,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "D:\\Github\\EntityFrameworkCore.Extensions\\src\\EntityFrameworkCore.Extensions.SqlServer\\EntityFrameworkCore.Extensions.SqlServer.csproj": {
-              "projectPath": "D:\\Github\\EntityFrameworkCore.Extensions\\src\\EntityFrameworkCore.Extensions.SqlServer\\EntityFrameworkCore.Extensions.SqlServer.csproj"
+            "E:\\Github\\EntityFrameworkCore.Extensions\\src\\EntityFrameworkCore.Extensions.SqlServer\\EntityFrameworkCore.Extensions.SqlServer.csproj": {
+              "projectPath": "E:\\Github\\EntityFrameworkCore.Extensions\\src\\EntityFrameworkCore.Extensions.SqlServer\\EntityFrameworkCore.Extensions.SqlServer.csproj"
             }
           }
         }
@@ -7918,6 +7952,10 @@
             "version": "[2.2.7, )"
           },
           "Microsoft.EntityFrameworkCore.SqlServer": {
+            "target": "Package",
+            "version": "[6.0.0, )"
+          },
+          "Microsoft.Extensions.Logging.Debug": {
             "target": "Package",
             "version": "[6.0.0, )"
           },

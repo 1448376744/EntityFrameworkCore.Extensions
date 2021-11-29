@@ -5,7 +5,10 @@ namespace EntityFrameworkCore.Extensions
     [AttributeUsage(AttributeTargets.Method)]
     public class SqlFunctionAttribute : Attribute
     {
-        public string Name { get; private set; }
+        public string? Name { get; private set; }
+        public SqlFunctionAttribute()
+        {
+        }
         public SqlFunctionAttribute(string name)
         {
             Name = name;

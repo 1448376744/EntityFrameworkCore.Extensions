@@ -3,9 +3,9 @@ using System.Linq.Expressions;
 
 namespace EntityFrameworkCore.Extensions.SqlExpressions
 {
-    public class FuncSqlExpression : SqlExpression
+    public class FunctionSqlExpression : SqlExpression
     {
-        public FuncSqlExpression(SqlExpressionContext context, Expression expression)
+        public FunctionSqlExpression(SqlExpressionContext context, Expression expression)
           : base(context, expression)
         {
 

@@ -9,9 +9,7 @@ namespace EntityFrameworkCore.Extensions.SqlExpressions
         private readonly Expression? _expression;
 
         protected SqlExpressionContext Context { get; }
-
-        private readonly Dictionary<string, object?> _arguments = new();
-
+        
         private bool _isBuild = false;
 
         private readonly StringBuilder _sql = new();
@@ -56,7 +54,7 @@ namespace EntityFrameworkCore.Extensions.SqlExpressions
         }
         protected override Expression VisitMethodCall(MethodCallExpression node)
         {
-            var expression = new FuncSqlExpression(Context, node).Build();
+            var expression = new FunctionSqlExpression(Context, node).Build();
             Append(expression);
             return node;
         }
@@ -173,9 +171,9 @@ namespace EntityFrameworkCore.Extensions.SqlExpressions
             {
                 value = ExpressionUtilities.ParseValue(node);
             }
-            var name = $"@p_{_arguments.Count}";
+            var name = $"@p_{Context.Arguments.Count}";
             _sql.Append(name);
-            _arguments.Add(name, value);
+            Context.Arguments.Add(name, value);
         }
         protected void AppendIn()
         {

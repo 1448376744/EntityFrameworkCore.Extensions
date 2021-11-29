@@ -4,12 +4,12 @@ namespace EntityFrameworkCore.Extensions.Query
 {
     public interface IDapperQueryable<T>
     {
-        IDapperQueryable<T> Skip(int count, bool condition = true);
-        IDapperQueryable<T> Take(int count, bool condition = true);
-        IDapperQueryable<T> Where(Expression<Func<T, bool>> expression, bool condition = true);
-        IDapperQueryable<T> Having(Expression<Func<T, bool>> expression, bool condition = true);
-        IDapperQueryable<T> OrderBy<TGroup>(Expression<Func<T, TGroup>> expression, bool condition = true);
-        IDapperQueryable<T> OrderByDescending<TGroup>(Expression<Func<T, TGroup>> expression, bool condition = true);
+        IDapperQueryable<T> Skip(int count);
+        IDapperQueryable<T> Take(int count);
+        IDapperQueryable<T> Where(Expression<Func<T, bool>> expression);
+        IDapperQueryable<T> Having(Expression<Func<T, bool>> expression);
+        IDapperQueryable<T> OrderBy<TGroup>(Expression<Func<T, TGroup>> expression);
+        IDapperQueryable<T> OrderByDescending<TGroup>(Expression<Func<T, TGroup>> expression);
         IDapperQueryable<T> GroupBy<TGroup>(Expression<Func<T, TGroup>> expression);
         int Count(int? commandTimeout = null);
         Task<int> CountAsync(int? commandTimeout = null);

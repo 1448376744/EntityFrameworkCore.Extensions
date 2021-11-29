@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Github\\EntityFrameworkCore.Extensions\\src\\EntityFrameworkCore.Extensions.SqlServer\\EntityFrameworkCore.Extensions.SqlServer.csproj": {}
+    "E:\\Github\\EntityFrameworkCore.Extensions\\src\\EntityFrameworkCore.Extensions.SqlServer\\EntityFrameworkCore.Extensions.SqlServer.csproj": {}
   },
   "projects": {
-    "D:\\Github\\EntityFrameworkCore.Extensions\\src\\EntityFrameworkCore.Extensions.SqlServer\\EntityFrameworkCore.Extensions.SqlServer.csproj": {
+    "E:\\Github\\EntityFrameworkCore.Extensions\\src\\EntityFrameworkCore.Extensions.SqlServer\\EntityFrameworkCore.Extensions.SqlServer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Github\\EntityFrameworkCore.Extensions\\src\\EntityFrameworkCore.Extensions.SqlServer\\EntityFrameworkCore.Extensions.SqlServer.csproj",
+        "projectUniqueName": "E:\\Github\\EntityFrameworkCore.Extensions\\src\\EntityFrameworkCore.Extensions.SqlServer\\EntityFrameworkCore.Extensions.SqlServer.csproj",
         "projectName": "EntityFrameworkCore.Extensions.SqlServer",
-        "projectPath": "D:\\Github\\EntityFrameworkCore.Extensions\\src\\EntityFrameworkCore.Extensions.SqlServer\\EntityFrameworkCore.Extensions.SqlServer.csproj",
+        "projectPath": "E:\\Github\\EntityFrameworkCore.Extensions\\src\\EntityFrameworkCore.Extensions.SqlServer\\EntityFrameworkCore.Extensions.SqlServer.csproj",
         "packagesPath": "C:\\Users\\14483\\.nuget\\packages\\",
-        "outputPath": "D:\\Github\\EntityFrameworkCore.Extensions\\src\\EntityFrameworkCore.Extensions.SqlServer\\obj\\",
+        "outputPath": "E:\\Github\\EntityFrameworkCore.Extensions\\src\\EntityFrameworkCore.Extensions.SqlServer\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\14483\\AppData\\Roaming\\NuGet\\NuGet.Config",

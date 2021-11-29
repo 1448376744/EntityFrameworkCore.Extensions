@@ -1,0 +1,12 @@
+E:\Github\EntityFrameworkCore.Extensions\src\EntityFrameworkCore.Extensions.SqlServer\bin\Debug\net6.0\EntityFrameworkCore.Extensions.SqlServer.deps.json
+E:\Github\EntityFrameworkCore.Extensions\src\EntityFrameworkCore.Extensions.SqlServer\bin\Debug\net6.0\EntityFrameworkCore.Extensions.SqlServer.dll
+E:\Github\EntityFrameworkCore.Extensions\src\EntityFrameworkCore.Extensions.SqlServer\bin\Debug\net6.0\ref\EntityFrameworkCore.Extensions.SqlServer.dll
+E:\Github\EntityFrameworkCore.Extensions\src\EntityFrameworkCore.Extensions.SqlServer\bin\Debug\net6.0\EntityFrameworkCore.Extensions.SqlServer.pdb
+E:\Github\EntityFrameworkCore.Extensions\src\EntityFrameworkCore.Extensions.SqlServer\obj\Debug\net6.0\EntityFrameworkCore.Extensions.SqlServer.csproj.AssemblyReference.cache
+E:\Github\EntityFrameworkCore.Extensions\src\EntityFrameworkCore.Extensions.SqlServer\obj\Debug\net6.0\EntityFrameworkCore.Extensions.SqlServer.GeneratedMSBuildEditorConfig.editorconfig
+E:\Github\EntityFrameworkCore.Extensions\src\EntityFrameworkCore.Extensions.SqlServer\obj\Debug\net6.0\EntityFrameworkCore.Extensions.SqlServer.AssemblyInfoInputs.cache
+E:\Github\EntityFrameworkCore.Extensions\src\EntityFrameworkCore.Extensions.SqlServer\obj\Debug\net6.0\EntityFrameworkCore.Extensions.SqlServer.AssemblyInfo.cs
+E:\Github\EntityFrameworkCore.Extensions\src\EntityFrameworkCore.Extensions.SqlServer\obj\Debug\net6.0\EntityFrameworkCore.Extensions.SqlServer.csproj.CoreCompileInputs.cache
+E:\Github\EntityFrameworkCore.Extensions\src\EntityFrameworkCore.Extensions.SqlServer\obj\Debug\net6.0\EntityFrameworkCore.Extensions.SqlServer.dll
+E:\Github\EntityFrameworkCore.Extensions\src\EntityFrameworkCore.Extensions.SqlServer\obj\Debug\net6.0\ref\EntityFrameworkCore.Extensions.SqlServer.dll
+E:\Github\EntityFrameworkCore.Extensions\src\EntityFrameworkCore.Extensions.SqlServer\obj\Debug\net6.0\EntityFrameworkCore.Extensions.SqlServer.pdb

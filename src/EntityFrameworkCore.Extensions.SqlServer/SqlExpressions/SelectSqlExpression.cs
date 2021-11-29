@@ -29,10 +29,10 @@ namespace EntityFrameworkCore.Extensions.SqlExpressions
                 }
                 else
                 {
-                    columns.Add($"\t{column} AS [{item.Name}]");
+                    columns.Add($"{column} AS [{item.Name}]");
                 }
             }
-            var select = string.Join(",\n", columns);
+            var select = string.Join(",\n\t", columns);
             return select;
         }
 

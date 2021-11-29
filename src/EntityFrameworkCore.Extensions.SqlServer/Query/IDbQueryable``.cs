@@ -4,12 +4,12 @@ namespace EntityFrameworkCore.Extensions.Query
 {
     public interface IDapperQueryable<T1, T2>
     {
-        IDapperQueryable<T1, T2> Skip(int count, bool condition = true);
-        IDapperQueryable<T1, T2> Take(int count, bool condition = true);
-        IDapperQueryable<T1, T2> Where(Expression<Func<T1, T2, bool>> expression, bool condition = true);
-        IDapperQueryable<T1, T2> Having(Expression<Func<T1, T2, bool>> expression, bool condition = true);
-        IDapperQueryable<T1, T2> OrderBy<TGroup>(Expression<Func<T1, T2, TGroup>> expression, bool condition = true);
-        IDapperQueryable<T1, T2> OrderByDescending<TGroup>(Expression<Func<T1, T2, TGroup>> expression, bool condition = true);
+        IDapperQueryable<T1, T2> Skip(int count);
+        IDapperQueryable<T1, T2> Take(int count);
+        IDapperQueryable<T1, T2> Where(Expression<Func<T1, T2, bool>> expression);
+        IDapperQueryable<T1, T2> Having(Expression<Func<T1, T2, bool>> expression);
+        IDapperQueryable<T1, T2> OrderBy<TGroup>(Expression<Func<T1, T2, TGroup>> expression);
+        IDapperQueryable<T1, T2> OrderByDescending<TGroup>(Expression<Func<T1, T2, TGroup>> expression);
         IDapperQueryable<T1, T2> GroupBy<TGroup>(Expression<Func<T1, T2, TGroup>> expression);
         IDapperQueryable<T1, T2> Join(Expression<Func<T1, T2, bool>> expression);
         IDapperQueryable<T1, T2> LeftJoin(Expression<Func<T1, T2, bool>> expression);
