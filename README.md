@@ -10,7 +10,7 @@
   var list1 = context.Queryable<Student, StudentClass>()     
        .ToList();
   //方式二
-  var list2 = context.Queryable<>(context.Students)     
+  var list2 = context.Queryable(context.Students)     
        .ToList();
 ```
 ## 多表链接
@@ -46,7 +46,7 @@
       }
  }
  
- var list = context.CreateSingle<Student>()
+ var list = context.Queryable<Student>()
          .GroupBy(a=>a.Name)
          .Select(s=> new
          {
