@@ -14,6 +14,8 @@ namespace EntityFrameworkCore.Extensions.Test
         public DbSet<Student> Students { get; internal set; }
 
         public DbSet<StudentClass> StudentClass { get; internal set; }
+
+        public DbSet<StudentGrade> StudentGrades { get; internal set; }
     }
 
     public class Student

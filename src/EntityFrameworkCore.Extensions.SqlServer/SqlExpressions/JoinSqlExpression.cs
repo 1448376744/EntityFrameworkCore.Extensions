@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EntityFrameworkCore.Extensions.SqlExpressions
 {
-    public class JoinSqlExpression : ISqlExpression
+    public class JoinSqlExpression : ExpressionVisitor, ISqlExpression
     {
         private readonly SqlExpressionContext _context;
 
@@ -26,14 +26,13 @@ namespace EntityFrameworkCore.Extensions.SqlExpressions
             _context = context;
         }
 
-     
         public string Build()
         {
-            Visit();
+            Visit(_expression);
             var sb = new StringBuilder();
             var type1 = _types.First();
             var table1 = _context.GetAliasTableName(type1);
-            sb.AppendFormat("{0} ", table1);
+            sb.AppendFormat("{0}", table1);
             foreach (var item in _types.Skip(1))
             {
                 if (_joinTypes.Count > 0)
@@ -53,9 +52,48 @@ namespace EntityFrameworkCore.Extensions.SqlExpressions
             return sb.ToString();
         }
 
-        private void VisitConstant(ConstantExpression node)
+        protected override Expression VisitLambda<T>(Expression<T> node)
         {
-            if (node.Value is JoinArray joinArray)
+            foreach (var item in node.Parameters)
+            {
+                _types.Add(item.Type);
+            }
+            Visit(node.Body);
+            return node;
+        }
+        protected override Expression VisitNew(NewExpression node)
+        {
+            foreach (var item in node.Arguments)
+            {
+                Visit(item);
+            }
+            return node;
+        }
+        protected override Expression VisitNewArray(NewArrayExpression node)
+        {
+            foreach (var item in node.Expressions)
+            {
+                Visit(item);
+            }
+            return node;
+        }
+        protected override Expression VisitUnary(UnaryExpression node)
+        {
+            Visit(node.Operand);
+            return node;
+        }
+        protected override Expression VisitBinary(BinaryExpression node)
+        {
+            _expressions.Enqueue(node);
+            return node;
+        }
+        protected override Expression VisitConstant(ConstantExpression node)
+        {
+            if (node.Value is JoinType joinType)
+            {
+                _joinTypes.Enqueue(joinType);
+            }
+            else if (node.Value is JoinArray joinArray)
             {
                 _joinTypes.Enqueue((JoinType)joinArray.Joins[0]);
                 var lambda = (LambdaExpression)joinArray.Joins[1];
@@ -65,70 +103,17 @@ namespace EntityFrameworkCore.Extensions.SqlExpressions
                 }
                 _expressions.Enqueue(lambda.Body);
             }
+            return node;
         }
 
-        private void VisitLambda(LambdaExpression lambda)
+        private static string GetJoinType(JoinType joinType)
         {
-            foreach (var item in lambda.Parameters)
+            string type = joinType switch
             {
-                _types.Add(item.Type);
-            }
-            if (lambda.Body is NewExpression newExpression)
-            {
-                if (newExpression.Arguments[0] is NewArrayExpression newArrayExpression)
-                {
-                    foreach (Expression item in newArrayExpression.Expressions)
-                    {
-                        if (item is UnaryExpression unaryExpression)
-                        {
-                            if (unaryExpression.Operand is ConstantExpression constant)
-                            {
-                                if (constant.Value is JoinType joinType)
-                                {
-                                    _joinTypes.Enqueue(joinType);
-                                }
-                            }
-                            else
-                            {
-                                _expressions.Enqueue(item);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        private void Visit()
-        {
-            if (_expression is ConstantExpression constant)
-            {
-                VisitConstant(constant);
-            }
-            else if (_expression is LambdaExpression lambda)
-            {
-                VisitLambda(lambda);
-            }
-            else
-            {
-                throw new SqlExpressionException("Unsupported join expression", _expression);
-            }
-        }
-
-        private string GetJoinType(JoinType joinType)
-        {
-            string type;
-            switch (joinType)
-            {
-                case JoinType.Left:
-                    type = "LEFT JOIN";
-                    break;
-                case JoinType.Right:
-                    type = "RIGHT JOIN";
-                    break;
-                default:
-                    type = "JOIN";
-                    break;
-            }
+                JoinType.Left => "LEFT JOIN",
+                JoinType.Right => "RIGHT JOIN",
+                _ => "INNER JOIN",
+            };
             return type;
         }
     }

@@ -7906,11 +7906,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Github\\EntityFrameworkCore.Extensions\\src\\EntityFrameworkCore.Extensions.Test\\EntityFrameworkCore.Extensions.Test.csproj",
+      "projectUniqueName": "D:\\Github\\EntityFrameworkCore.Extensions\\src\\EntityFrameworkCore.Extensions.Test\\EntityFrameworkCore.Extensions.Test.csproj",
       "projectName": "EntityFrameworkCore.Extensions.Test",
-      "projectPath": "E:\\Github\\EntityFrameworkCore.Extensions\\src\\EntityFrameworkCore.Extensions.Test\\EntityFrameworkCore.Extensions.Test.csproj",
+      "projectPath": "D:\\Github\\EntityFrameworkCore.Extensions\\src\\EntityFrameworkCore.Extensions.Test\\EntityFrameworkCore.Extensions.Test.csproj",
       "packagesPath": "C:\\Users\\14483\\.nuget\\packages\\",
-      "outputPath": "E:\\Github\\EntityFrameworkCore.Extensions\\src\\EntityFrameworkCore.Extensions.Test\\obj\\",
+      "outputPath": "D:\\Github\\EntityFrameworkCore.Extensions\\src\\EntityFrameworkCore.Extensions.Test\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\14483\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -7927,8 +7927,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "E:\\Github\\EntityFrameworkCore.Extensions\\src\\EntityFrameworkCore.Extensions.SqlServer\\EntityFrameworkCore.Extensions.SqlServer.csproj": {
-              "projectPath": "E:\\Github\\EntityFrameworkCore.Extensions\\src\\EntityFrameworkCore.Extensions.SqlServer\\EntityFrameworkCore.Extensions.SqlServer.csproj"
+            "D:\\Github\\EntityFrameworkCore.Extensions\\src\\EntityFrameworkCore.Extensions.SqlServer\\EntityFrameworkCore.Extensions.SqlServer.csproj": {
+              "projectPath": "D:\\Github\\EntityFrameworkCore.Extensions\\src\\EntityFrameworkCore.Extensions.SqlServer\\EntityFrameworkCore.Extensions.SqlServer.csproj"
             }
           }
         }

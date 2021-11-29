@@ -6,8 +6,9 @@ namespace EntityFrameworkCore.Extensions.SqlExpressions
 {
     public abstract class SqlExpression : ExpressionVisitor, ISqlExpression
     {
-        private readonly Expression? _expression;
+        #region base
 
+        private readonly Expression? _expression;
         protected SqlExpressionContext Context { get; }
         
         private bool _isBuild = false;
@@ -38,6 +39,7 @@ namespace EntityFrameworkCore.Extensions.SqlExpressions
             _isBuild = true;
             return _sql.ToString();
         }
+        #endregion
 
         #region visit
         protected override Expression VisitMember(MemberExpression node)
@@ -52,12 +54,14 @@ namespace EntityFrameworkCore.Extensions.SqlExpressions
             }
             return node;
         }
+      
         protected override Expression VisitMethodCall(MethodCallExpression node)
         {
             var expression = new FunctionSqlExpression(Context, node).Build();
             Append(expression);
             return node;
         }
+       
         protected override Expression VisitConstant(ConstantExpression node)
         {
             if (node == null)
@@ -65,8 +69,11 @@ namespace EntityFrameworkCore.Extensions.SqlExpressions
                 AppendSpace();
             }
             AddArgument(node);
+#pragma warning disable CS8603 // 可能返回 null 引用。
             return node;
+#pragma warning restore CS8603 // 可能返回 null 引用。
         }
+       
         protected override Expression VisitBinary(BinaryExpression node)
         {
             if (node.Right is ConstantExpression constantExpression && constantExpression.Value == null)
@@ -96,6 +103,7 @@ namespace EntityFrameworkCore.Extensions.SqlExpressions
             }
             return node;
         }
+       
         protected override Expression VisitUnary(UnaryExpression node)
         {
             if (node.NodeType == ExpressionType.Not)

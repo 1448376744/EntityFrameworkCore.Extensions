@@ -20,15 +20,24 @@ namespace EntityFrameworkCore.Extensions.Test
                 .Options;
 
             var context = new MyDbContext(options);
+            var list1 = context.Queryable<Student, StudentClass>()
+               .On((a, b) => new JoinArray
+               (
+                   JoinType.Left, a.ClassId == b.Id
+               ))
+               .Skip(1)
+               .Take(1)
+               .Select((a, b) => new { a.Name, Class = b.Name });
 
-
-            var list1 = context.Queryable<Student, StudentClass, StudentGrade>()
+            var list2 = context.Queryable<Student, StudentClass, StudentGrade>()
                 .On((a, b, c) => new JoinArray
                 (
                     JoinType.Inner, a.ClassId == b.Id,
                     JoinType.Left, a.GradeId == c.Id
                 ))
-                .Select((a, b, c) => new { a.Name, Class = b.Name });
+                .Skip(1)
+                .Take(1)
+                .Select((a, b, c) => new { a.Name, Class = b.Name, c.Grade });
         }
     }
 }
