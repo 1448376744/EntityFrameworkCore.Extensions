@@ -1,8 +1,6 @@
 ﻿using Dapper;
-using EntityFrameworkCore.Extensions.Metadata;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Logging;
 using System.Data;
@@ -12,6 +10,7 @@ namespace EntityFrameworkCore.Extensions.Query
     public class DapperQueryProvider
     {
         private readonly ILoggerFactory _loggerFactory;
+       
         private readonly DatabaseFacade _database;
 
         public DapperQueryProvider(DatabaseFacade database)

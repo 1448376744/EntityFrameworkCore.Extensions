@@ -9,9 +9,10 @@
 		<RepositoryType>github</RepositoryType>
 		<PackageTags>dapper,efcore,orm,linq to database</PackageTags>
 		<Authors>花间岛</Authors>
-		<AssemblyVersion>1.0.0.0</AssemblyVersion>
+		<AssemblyVersion>1.0.1</AssemblyVersion>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<PackageReleaseNotes>1.0.0.0-rc01</PackageReleaseNotes>
+		<PackageReleaseNotes>1.0.1</PackageReleaseNotes>
+		<Version>1.0.1-rc01</Version>
 	</PropertyGroup>
 
 	<ItemGroup>

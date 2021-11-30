@@ -13,20 +13,28 @@ namespace EntityFrameworkCore.Extensions.Test
         {
             var SqlStr = System.IO.File.ReadAllText(".\\SqlConnectionString.log");
             var mysqlStr = System.IO.File.ReadAllText(".\\MySqlConnectionString.log");
-            var logggerFactory = new LoggerFactory();
-            logggerFactory.AddProvider(new DebugLoggerProvider());
+            var logggerFactory = LoggerFactory.Create(c => 
+            {
+                c.SetMinimumLevel(LogLevel.Debug);
+                c.AddDebug();
+            });
             var options = new DbContextOptionsBuilder<MyDbContext>()
                 .UseLoggerFactory(logggerFactory)
-                //.UseSqlServer(SqlStr)
-                .UseMySql(mysqlStr,ServerVersion.AutoDetect(mysqlStr))
+                .UseSqlServer(SqlStr)
+                //.UseMySql(mysqlStr,ServerVersion.AutoDetect(mysqlStr))
                 .Options;
 
             var context = new MyDbContext(options);
-            var list1 = context.Queryable<Student, StudentClass>()
-               .On((a, b) => new JoinArray
-               (
-                   JoinType.Left, a.ClassId == b.Id
-               ))
+        
+            var query = context.Queryable<Student, StudentClass>()
+              .On((a, b) => new JoinArray
+              (
+                  JoinType.Left, a.ClassId == b.Id
+              ));
+            
+            var count = query.Count();
+        
+            var list1 = query
                .Skip(1)
                .Take(1)
                .Select((a, b) => new { a.Name, Class = b.Name });

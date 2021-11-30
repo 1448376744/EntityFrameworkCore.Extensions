@@ -3,42 +3,42 @@ using System.Text;
 
 namespace EntityFrameworkCore.Extensions.SqlExpressions
 {
-    public class SqlExpressionCollection : ICollection<ISqlExpression>
+    public class SqlExpressionCollection : ICollection<SqlExpressionBase>
     {
-        private readonly List<ISqlExpression> _list = new List<ISqlExpression>();
+        private readonly List<SqlExpressionBase> _list = new List<SqlExpressionBase>();
 
         public int Count => ((ICollection<SqlExpression>)_list).Count;
 
         public bool IsReadOnly => ((ICollection<SqlExpression>)_list).IsReadOnly;
 
-        public void Add(ISqlExpression item)
+        public void Add(SqlExpressionBase item)
         {
-            ((ICollection<ISqlExpression>)_list).Add(item);
+            ((ICollection<SqlExpressionBase>)_list).Add(item);
         }
 
         public void Clear()
         {
-            ((ICollection<ISqlExpression>)_list).Clear();
+            ((ICollection<SqlExpressionBase>)_list).Clear();
         }
 
-        public bool Contains(ISqlExpression item)
+        public bool Contains(SqlExpressionBase item)
         {
-            return ((ICollection<ISqlExpression>)_list).Contains(item);
+            return ((ICollection<SqlExpressionBase>)_list).Contains(item);
         }
 
-        public void CopyTo(ISqlExpression[] array, int arrayIndex)
+        public void CopyTo(SqlExpressionBase[] array, int arrayIndex)
         {
-            ((ICollection<ISqlExpression>)_list).CopyTo(array, arrayIndex);
+            ((ICollection<SqlExpressionBase>)_list).CopyTo(array, arrayIndex);
         }
 
-        public IEnumerator<ISqlExpression> GetEnumerator()
+        public IEnumerator<SqlExpressionBase> GetEnumerator()
         {
-            return ((IEnumerable<ISqlExpression>)_list).GetEnumerator();
+            return ((IEnumerable<SqlExpressionBase>)_list).GetEnumerator();
         }
 
-        public bool Remove(ISqlExpression item)
+        public bool Remove(SqlExpressionBase item)
         {
-            return ((ICollection<ISqlExpression>)_list).Remove(item);
+            return ((ICollection<SqlExpressionBase>)_list).Remove(item);
         }
 
         IEnumerator IEnumerable.GetEnumerator()

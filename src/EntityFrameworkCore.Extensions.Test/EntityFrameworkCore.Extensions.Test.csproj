@@ -18,10 +18,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\EntityFrameworkCore.Extensions.MySql\EntityFrameworkCore.Extensions.MySql.csproj" />
+	  <ProjectReference Include="..\EntityFrameworkCore.Extensions.SqlServer\EntityFrameworkCore.Extensions.SqlServer.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Update="MySqlConnectionString.log">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
 	  <None Update="MySqlConnectionString.log">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>

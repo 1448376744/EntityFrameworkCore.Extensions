@@ -29,7 +29,7 @@ namespace EntityFrameworkCore.Extensions.SqlExpressions
                 }
                 else
                 {
-                    columns.Add($"{column} AS `{item.Name}`");
+                    columns.Add($"{column} AS {Context.NameFormat(item.Name)}");
                 }
             }
             var select = string.Join(",\n\t", columns);

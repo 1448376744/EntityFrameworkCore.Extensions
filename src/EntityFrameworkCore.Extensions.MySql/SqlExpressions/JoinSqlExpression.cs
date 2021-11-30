@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EntityFrameworkCore.Extensions.SqlExpressions
 {
-    public class JoinSqlExpression : ExpressionVisitor, ISqlExpression
+    public class JoinSqlExpression : SqlExpressionBase
     {
         private readonly SqlExpressionContext _context;
 
@@ -18,38 +18,38 @@ namespace EntityFrameworkCore.Extensions.SqlExpressions
 
         private readonly Queue<Expression> _expressions = new();
 
-        private readonly Expression _expression;
-
         public JoinSqlExpression(SqlExpressionContext context, Expression expression)
+            : base(context, expression)
         {
-            _expression = expression;
             _context = context;
         }
 
-        public string Build()
+        public override string Build()
         {
-            Visit(_expression);
-            var sb = new StringBuilder();
-            var type1 = _types.First();
-            var table1 = _context.GetAliasTableName(type1);
-            sb.AppendFormat("{0}", table1);
-            foreach (var item in _types.Skip(1))
+            if (!IsBuild)
             {
-                if (_joinTypes.Count > 0)
+                base.Build();
+                var type1 = _types.First();
+                var table1 = _context.GetAliasTableName(type1);
+                ExpressionBuilder.AppendFormat("{0}", table1);
+                foreach (var item in _types.Skip(1))
                 {
-                    var joinType = GetJoinType(_joinTypes.Dequeue());
-                    sb.AppendFormat(" {0} ", joinType);
-                }
-                var table2 = _context.GetAliasTableName(item);
-                sb.AppendFormat("{0}", table2);
-                if (_expressions.Count > 0)
-                {
-                    var ex = _expressions.Dequeue();
-                    var on = new OnSqlExpression(_context, ex).Build();
-                    sb.AppendFormat(" ON {0}", on);
+                    if (_joinTypes.Count > 0)
+                    {
+                        var joinType = GetJoinType(_joinTypes.Dequeue());
+                        ExpressionBuilder.AppendFormat(" {0} ", joinType);
+                    }
+                    var table2 = _context.GetAliasTableName(item);
+                    ExpressionBuilder.AppendFormat("{0}", table2);
+                    if (_expressions.Count > 0)
+                    {
+                        var ex = _expressions.Dequeue();
+                        var on = new OnSqlExpression(_context, ex).Build();
+                        ExpressionBuilder.AppendFormat(" ON {0}", on);
+                    }
                 }
             }
-            return sb.ToString();
+            return base.Build();
         }
 
         protected override Expression VisitLambda<T>(Expression<T> node)
