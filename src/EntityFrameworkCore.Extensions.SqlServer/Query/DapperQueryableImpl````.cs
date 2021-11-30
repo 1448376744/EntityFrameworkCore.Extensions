@@ -14,9 +14,9 @@ namespace EntityFrameworkCore.Extensions.Query
 
         private readonly SqlExpressionCollection _expressions = new();
 
-        private int _takeCount = -1;
+        private int _takeCount = 0;
 
-        private int _skipCount = -1;
+        private int _skipCount = 0;
 
         public DapperQueryableImpl(DapperQueryProvider provider, IModelEx model)
         {
@@ -127,7 +127,7 @@ namespace EntityFrameworkCore.Extensions.Query
             var having = _expressions.BuildHaving();
             var order = _expressions.BuildOrder();
             var sb = new StringBuilder();
-            if (_takeCount >= 0 && _skipCount == -1)
+            if (_takeCount >= 0 && _skipCount == 0)
             {
                 sb.AppendFormat("SELECT TOP {0}\n\t{1}\nFROM\n\t{2}", _takeCount, columns, view);
             }

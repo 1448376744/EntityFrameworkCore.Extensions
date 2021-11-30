@@ -14,9 +14,9 @@ namespace EntityFrameworkCore.Extensions.Query
 
         private readonly SqlExpressionCollection _expressions = new();
 
-        private int _takeCount = -1;
+        private int _takeCount = 0;
 
-        private int _skipCount = -1;
+        private int _skipCount = 0;
 
         public DapperQueryableImpl(DapperQueryProvider provider, IModelEx model)
         {
@@ -151,17 +151,12 @@ namespace EntityFrameworkCore.Extensions.Query
             {
                 sb.AppendFormat("\nORDER BY\n\t{0}", order);
             }
-            if (_takeCount > 0 && _skipCount < 0)
-            {
-                _skipCount = 0;
-                sb.AppendFormat("\nLIMIT {0},{0}", _skipCount, _takeCount);
-            }
-            if (_takeCount < 0 && _skipCount < 0)
+            if (_takeCount == 0 && _skipCount > 0)
             {
                 _takeCount = int.MaxValue;
                 sb.AppendFormat("\nLIMIT {0},{0}", _skipCount, _takeCount);
             }
-            if (_takeCount > 0 && _skipCount > 0)
+            else
             {
                 sb.AppendFormat("\nLIMIT {0},{0}", _skipCount, _takeCount);
             }

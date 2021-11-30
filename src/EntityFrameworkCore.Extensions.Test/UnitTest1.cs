@@ -37,6 +37,7 @@ namespace EntityFrameworkCore.Extensions.Test
             var list1 = query
                .Skip(1)
                .Take(1)
+               .OrderBy((a,b)=>a.Id)
                .Select((a, b) => new { a.Name, Class = b.Name });
 
             var list2 = context.Queryable<Student, StudentClass, StudentGrade>()

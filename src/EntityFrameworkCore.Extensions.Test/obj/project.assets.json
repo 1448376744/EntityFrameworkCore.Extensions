@@ -2222,7 +2222,7 @@
           "lib/netstandard1.3/System.Xml.XDocument.dll": {}
         }
       },
-      "EntityFrameworkCore.Extensions.SqlServer/1.0.1-rc01": {
+      "EntityFrameworkCore.Extensions.SqlServer/1.0.1-rc02": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
@@ -7882,7 +7882,7 @@
         "system.xml.xdocument.nuspec"
       ]
     },
-    "EntityFrameworkCore.Extensions.SqlServer/1.0.1-rc01": {
+    "EntityFrameworkCore.Extensions.SqlServer/1.0.1-rc02": {
       "type": "project",
       "path": "../EntityFrameworkCore.Extensions.SqlServer/EntityFrameworkCore.Extensions.SqlServer.csproj",
       "msbuildProject": "../EntityFrameworkCore.Extensions.SqlServer/EntityFrameworkCore.Extensions.SqlServer.csproj"
@@ -7890,7 +7890,7 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "EntityFrameworkCore.Extensions.SqlServer >= 1.0.1-rc01",
+      "EntityFrameworkCore.Extensions.SqlServer >= 1.0.1-rc02",
       "MSTest.TestAdapter >= 2.2.7",
       "MSTest.TestFramework >= 2.2.7",
       "Microsoft.EntityFrameworkCore.SqlServer >= 6.0.0",

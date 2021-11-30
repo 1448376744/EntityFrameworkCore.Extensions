@@ -5,7 +5,7 @@
   },
   "projects": {
     "E:\\Github\\EntityFrameworkCore.Extensions\\src\\EntityFrameworkCore.Extensions.SqlServer\\EntityFrameworkCore.Extensions.SqlServer.csproj": {
-      "version": "1.0.1-rc01",
+      "version": "1.0.1-rc02",
       "restore": {
         "projectUniqueName": "E:\\Github\\EntityFrameworkCore.Extensions\\src\\EntityFrameworkCore.Extensions.SqlServer\\EntityFrameworkCore.Extensions.SqlServer.csproj",
         "projectName": "EntityFrameworkCore.Extensions.SqlServer",
