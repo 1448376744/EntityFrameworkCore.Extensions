@@ -56,8 +56,8 @@
     }
 
    var list = context.Queryable<Student>()
-         .GroupBy(a=>a.Name)
-         .Select(s=> new
+         .GroupBy(a => a.Name)
+         .Select(s => new
          {
              s.Name,
              Count = MyFunc.Count(s.Id)
