@@ -176,7 +176,7 @@ namespace EntityFrameworkCore.Extensions.Query
                 _takeCount = int.MaxValue;
                 sb.AppendFormat("\nLIMIT {0},{0}", _skipCount, _takeCount);
             }
-            else
+            else if (_takeCount > 0 || _skipCount > 0)
             {
                 sb.AppendFormat("\nLIMIT {0},{0}", _skipCount, _takeCount);
             }
