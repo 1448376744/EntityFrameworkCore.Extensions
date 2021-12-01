@@ -46,16 +46,16 @@
 ## 函数支持
  ``` C#
   
-  public class MyFunc
-  {
-      [SqlFunction]
-      public static long Count<T>(T column)
-      {
-          throw Excption();
-      }
-  }
- 
- var list = context.Queryable<Student>()
+    public class MyFunc
+    {
+        [SqlFunction]
+        public static long Count<T>(T column)
+        {
+            throw Excption();
+        }
+    }
+
+   var list = context.Queryable<Student>()
          .GroupBy(a=>a.Name)
          .Select(s=> new
          {
