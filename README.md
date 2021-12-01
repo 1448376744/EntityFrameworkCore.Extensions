@@ -8,14 +8,14 @@
 ``` C#
   //方式一
   var list1 = context.Queryable<Student, StudentClass>()     
-       .On((a, b)=>new JoinArray
+       .On((a, b) => new JoinArray
        (
             JoinType.Left, a.ClassId == b.Id
        ))
        .ToList();
   //方式二
   var list2 = context.Queryable(context.Students,context.StudentClass)     
-      .On((a, b)=>new JoinArray
+      .On((a, b) => new JoinArray
        (
             JoinType.Left, a.ClassId == b.Id
        ))
