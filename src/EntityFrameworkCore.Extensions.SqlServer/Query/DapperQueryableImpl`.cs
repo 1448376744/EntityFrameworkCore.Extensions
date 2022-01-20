@@ -129,7 +129,7 @@ namespace EntityFrameworkCore.Extensions.Query
             var having = _expressions.BuildHaving();
             var order = _expressions.BuildOrder();
             var sb = new StringBuilder();
-            if (_takeCount >= 0 && _skipCount == 0)
+            if (_takeCount > 0 && _skipCount == 0)
             {
                 sb.AppendFormat("SELECT TOP {0}\n\t{1}\nFROM\n\t{2}", _takeCount, columns, view);
             }
