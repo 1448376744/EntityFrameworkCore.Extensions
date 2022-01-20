@@ -51,7 +51,7 @@
         [SqlFunction]
         public static long Count<T>(T column)
         {
-            throw Excption();
+            throw new NotImplementedException();
         }
     }
 
